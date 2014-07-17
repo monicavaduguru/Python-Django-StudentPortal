@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Student Portal{% endblock %}</title>
+</head>
+
+
+<div id="container" style="width:1200px">
+<div id="header" style="background-color:#FFA500","width:700px">
+<h1 style="margin-bottom:0;">Student Portal</h1></div>
+<div id="menu" style="background-color:#FFD700;height:2000px;width:200px;float:left;">
+<ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Personal_Information/">Personal Information</a></li>
+            <li><a href="/Course_History/">Course History </a></li>
+            <li><a href="/Add_Courses/">Add Courses </a></li>
+            <li><a href="/Drop_Courses/">Drop Courses </a></li>
+            <li><a href="/Grades/">Grades </a></li>
+            <li><a href="/Fee/">Fee </a></li>
+            <li><a href="/Important_Links/">Important links </a></li>
+    <form method="post" action="/logout">
+<p><button type="submit" name="logout">Logout</button></p>
+</form>
+        </ul></div>
+
+
+<div id="content" style="background-color:#EEEEEE;height:2000px;width:1000px;float:left;">
+<div id="sidebar">
+        {% if count %}
+    <p> &nbsp;&nbsp;<b>Grade details</b></p>
+    <ul>
+    {% for enrollobj,value in gradedict.items %}
+        <li>Course Name     =   {{ enrollobj.batch.courseId.coursename }}<br>
+            Course Id     =   {{ enrollobj.batch.courseId.courseid }}<br>
+            Quarter     = {{enrollobj.batch.quarter}}<br>
+            Year        ={{enrollobj.batch.year}}<br>
+            Units       =  {{ enrollobj.batch.courseId.Credits }}<br>
+            Grade={{ enrollobj.grade }}<br>
+            Gradepoints={{value}}<br>
+            <br>
+    {% endfor %}
+    </ul>
+    <p>&nbsp;&nbsp;<b>Total number of courses taken</b>={{count}}</p>
+    <p>&nbsp;&nbsp;<b>Total number of units taken</b>={{totalcredits}}</p>
+    <p>&nbsp;&nbsp;<b>Cummulative Total</b>={{totalpoints}}</p>
+    <p>&nbsp;&nbsp;<b>GPA</b>={{GPA}}</p>
+{% else %}
+    <p>&nbsp;&nbsp;<b>No courses have been graded so far</b></p>
+{% endif %}
+    </div>
+</div>
+
+<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+Copyright © Monica Vaduguru</div>
+
+
+</div>
+</body>
+</html>
+
+
+
+
+
+

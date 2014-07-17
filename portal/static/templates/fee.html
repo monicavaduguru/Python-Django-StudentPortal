@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Student Portal{% endblock %}</title>
+</head>
+
+<div id="container" style="width:1200px">
+<div id="header" style="background-color:#FFA500","width:700px">
+<h1 style="margin-bottom:0;">Student Portal</h1></div>
+<div id="menu" style="background-color:#FFD700;height:580px;width:200px;float:left;">
+<ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Personal_Information/">Personal Information</a></li>
+            <li><a href="/Course_History/">Course History </a></li>
+            <li><a href="/Add_Courses/">Add Courses </a></li>
+            <li><a href="/Drop_Courses/">Drop Courses </a></li>
+            <li><a href="/Grades/">Grades </a></li>
+            <li><a href="/Fee/">Fee </a></li>
+            <li><a href="/Important_Links/">Important links </a></li>
+    <form method="post" action="/logout">
+<p><button type="submit" name="logout">Logout</button></p>
+</form>
+        </ul></div>
+
+
+<div id="content" style="background-color:#EEEEEE;height:580px;width:1000px;float:left;">
+<div id="sidebar">
+        {% if totalfee %}
+    <p> &nbsp;&nbsp;Fee details for present quarter</p>
+    <ul>
+    {% for courseobj,value in fee.items %}
+        <li>Course Name     =   {{ courseobj.coursename }}<br>
+            Course Id     =   {{ courseobj.courseid }}<br>
+                Credits     = {{courseobj.Credits}}<br>
+                Fee for course          =  {{ value}} dollars<br>
+            <br></li>
+    {% endfor %}
+    </ul>
+    Total Fee={{ totalfee}} dollars
+{% else %}
+    <p>&nbsp;&nbsp;No courses have been taken for the present quarter</p>
+{% endif %}
+    </div>
+</div>
+
+<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+Copyright © Monica Vaduguru</div>
+
+
+</div>
+</body>
+</html>
+
+
+
+

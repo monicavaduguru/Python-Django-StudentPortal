@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>{% block title %}Student Portal{% endblock %}</title>
+
+</head>
+
+
+<div id="container" style="width:1200px">
+<div id="header" style="background-color:#FFA500","width:700px">
+<h1 style="margin-bottom:0;">Student Portal</h1></div>
+
+
+
+<div id="content" style="background-color:#EEEEEE;height:580px;width:1200px;float:left;">
+<div id="sidebar">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <div class="container" ng-view="" id="logindiv" align="center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      <form class="form-signin" name="loginForm" id="loginForm" ng-submit="submit()">
+        <h2 class="form-signin-heading">Log In</h2> {% csrf_token %}
+        <div class="alert alert-danger" id="login-error" style="display:none"></div>
+        <p>
+          <input autofocus="true"  name="username" ng-model="username" placeholder="User name" required="true" type="username">
+        </p>
+          <input id="password" name="password" ng-model="password" placeholder="Password" required="true" type="password">
+        <p></p>
+        <button class="btn btn-lg btn-primary " type="submit">Log in</button>
+      </form>
+    </div>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $("#loginForm").submit(function() {
+          var frm = $('#loginForm');
+          $.ajax({
+              type: 'POST',
+              url: '/login/',
+              data: frm.serialize(),
+              success: function (data) {
+                  window.location = '/'
+              },
+              error: function(data){
+                $('#login-error').text(data.responseText);
+                $('#login-error').show();
+              }
+          });
+
+          return false;
+        })
+      });
+    </script>
+</div>
+
+
+
+
+</div>
+<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+Copyright © Monica Vaduguru</div>
+</body>
+</html>
+
+
+
+
+
+
